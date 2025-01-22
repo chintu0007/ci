@@ -44,9 +44,9 @@ jobs:
       - name: Push Changes Back to Repo
         run: |
           
-          git config user.name "gh-actions"
+          git config user.name "Gaurang Parekh"
 
-          git config user.email "gp@laracasts.com"
+          git config user.email "gaurang9rising@gmail.com"
 
           git add .
 
