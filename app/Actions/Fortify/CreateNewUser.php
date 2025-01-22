@@ -20,7 +20,7 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {   
 
-        // this is  a arndom comment 2
+        // this is  a arndom comment 3
 
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
