@@ -1,10 +1,16 @@
 name: LAravel Pint
 
+permissions:
+  pull-requests: write # Necessary to comment on PRs
+  actions: write       # Necessary to cancel workflow executions
+  packages: write
+  deployments: write
+  statuses: write
+  contents: read
+
+
 on:
   pull_request
-
-permissions:
-  pull-requests: write
 
 jobs:
   laravel-pint:
