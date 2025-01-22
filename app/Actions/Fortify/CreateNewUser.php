@@ -18,7 +18,10 @@ class CreateNewUser implements CreatesNewUsers
      * @param  array<string, string>  $input
      */
     public function create(array $input): User
-    {
+    {   
+
+        // this is  a arndom number
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => [
