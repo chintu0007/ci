@@ -20,8 +20,8 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {   
 
-        //This is rnadom comment
-        
+        //This is rnadom comment by Luke Downing
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => [
