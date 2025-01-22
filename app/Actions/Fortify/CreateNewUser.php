@@ -17,8 +17,7 @@ class CreateNewUser implements CreatesNewUsers
      *
      * @param  array<string, string>  $input
      */
-    public function create(array $input): User
-    {   
+    public function create(array $input): User {   
 
         // this is  a arndom comment 5 - my good pr 5
 
