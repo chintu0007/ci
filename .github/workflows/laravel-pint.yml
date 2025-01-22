@@ -50,6 +50,6 @@ jobs:
 
           git add .
 
-          git commit -m "Laravel Pint"
+          git commit -m "Laravel Pint" || exit 0
 
           git push
