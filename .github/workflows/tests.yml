@@ -21,17 +21,17 @@ jobs:
         image: redis:8.0-M03
         
         ports:
-          - 6379:6379
-
-        env:
-          MYSQL_DATABASE: laravel
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes  
+          - 6379:6379         
 
       mysql: 
         image: mysql:8.0
         
         ports:
           - 3306:3306
+
+        env:
+          MYSQL_DATABASE: laravel
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes   
 
     steps:
       - name: Checkout Code
