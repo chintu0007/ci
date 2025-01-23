@@ -1,4 +1,4 @@
-name: Run Tests
+name: Tests
 
 permissions:
   pull-requests: write # Necessary to comment on PRs
@@ -8,14 +8,13 @@ permissions:
   statuses: write
   contents: write
 
-
 on:
   pull_request
 
 jobs:
   run-tests:
-    runs-on: ubuntu-24.04
-    
+    runs-on: ubuntu-latest
+
     services:
 
       redis: 
@@ -26,17 +25,14 @@ jobs:
           - 6379:6379
 
     steps:
-     
       - name: Checkout Code
-        
-        uses: actions/checkout@v4.2.2
-      
+        uses: actions/checkout@v4.1.7
 
       - name: Setup PHP and Composer
-
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, redis, igbinary, msgpack, lzf, zstd, lz4, memcached, gmp, :php-psr
           tools: composer:v2
 
       - name: Install Dependencies
@@ -44,14 +40,11 @@ jobs:
 
       - name: Prep Application
         run: |
-          
           cp .env.example .env
           php artisan key:generate
 
-
       - name: Run Tests
-        env: 
+        env:
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
-
         run: php artisan test --compact
