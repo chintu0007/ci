@@ -21,8 +21,17 @@ jobs:
         image: redis:8.0-M03
         
         ports:
-
           - 6379:6379
+
+        env:
+          MYSQL_DATABASE: laravel
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes  
+
+      mysql: 
+        image: mysql:8.0
+        
+        ports:
+          - 3306:3306
 
     steps:
       - name: Checkout Code
@@ -32,7 +41,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, redis, igbinary, msgpack, lzf, zstd, lz4, memcached, gmp, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, redis, igbinary, msgpack, zstd, lz4, memcached, gmp, :php-psr
           tools: composer:v2
 
       - name: Install Dependencies
@@ -44,7 +53,5 @@ jobs:
           php artisan key:generate
 
       - name: Run Tests
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: ":memory:"
+          
         run: php artisan test --compact
