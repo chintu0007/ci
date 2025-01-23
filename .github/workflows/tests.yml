@@ -15,7 +15,15 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-24.04
+    
+    services:
 
+      redis: 
+        image: redis:8.0-M03
+        
+        ports:
+
+          - 6379:6379
 
     steps:
      
@@ -45,5 +53,5 @@ jobs:
         env: 
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
-          
+
         run: php artisan test --compact
