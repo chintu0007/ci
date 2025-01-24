@@ -41,8 +41,16 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, redis, igbinary, msgpack, zstd, lz4, memcached, gmp, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, gd, redis, igbinary, msgpack, zstd, lz4, memcached, gmp, :php-psr
           tools: composer:v2
+
+      - name: Cache Dependencies
+      
+        uses: actions/cache@v4
+        with: 
+          key: composer-cache-${{ hashFiles('**/composer.lock') }}
+          path: vendor/
+
 
       - name: Install Dependencies
         run: composer install -q --no-interaction
