@@ -4,15 +4,13 @@ namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
+
 abstract class TestCase extends BaseTestCase
 {
-    protected function setUp() 
+    protected function setUp(): void
     {
-        parent::setUp();
+                    parent::setUp();
 
-        $this->withoutVite();
-
-
-        
+                    $this->withoutVite();        
     }
 }
