@@ -85,6 +85,11 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
+      
+      - name: Run Linters
+        uses: wearerequired/lint-action@v1
+        with:
+          php_codesniffer: true
 
       - name: Run Tests
           
