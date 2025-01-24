@@ -23,6 +23,8 @@ test('users can authenticate using the login screen', function () {
 test('users cannot authenticate with invalid password', function () {
     $user = User::factory()->create();
 
+    console.log("Lint test");
+
     $this->post('/login', [
         'email' => $user->email,
         'password' => 'wrong-password',
