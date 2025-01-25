@@ -1,10 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Models\User;
 use Illuminate\Support\Facades\Redis;
-
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
@@ -15,7 +13,6 @@ Route::get('/', function () {
         'users' => User::inRandomOrder($seed)->paginate(3),
     ]);
 });
-
 
 Route::middleware([
     'auth:sanctum',

@@ -85,12 +85,12 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
-      
-      - name: Run Linters
-        uses: wearerequired/lint-action@v1
-        with:
-          php_codesniffer: true
-
-      - name: Run Tests
-          
+     
+      - name: Run Laravel Pint
+        run: vendor/bin/pint --test
+   
+      - name: Run PHP_CodeSniffer
+        run: vendor/bin/phpcs --standard=PSR12 app/ tests/
+    
+      - name: Run Tests          
         run: php artisan test --compact
