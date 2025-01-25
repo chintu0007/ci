@@ -1,30 +1,26 @@
 name: Setup
 description: Setup PHP and Composer
 
-
-inputs: 
-
+inputs:
   php-version:
-      description: The PHP version(s) you wish to
-      required: true
-  
-  php-extensions:
-      description: The PHP extensions you wish to
-      required: false
-      default:  dom, curl, libxml, mbstring, pcntl, pdo, sqlite, pdo_sqlite, gd, redis, igbinary, msgpack, lzf, zstd, lz4, memcached, gmp, :php-psr
+    description: The PHP version(s) you wish to
+    required: true
 
+  php-extensions:
+    description: The PHP extensions you wish to
+    required: false
+    default: dom, curl, libxml, mbstring, pcntl, pdo, sqlite, pdo_sqlite, gd, redis, igbinary, msgpack, lzf, zstd, lz4, memcached, gmp, :php-psr
 
 runs:
   using: composite
 
   steps:
-
-  - name: Get PHP extension cache hash
+    - name: Get PHP extension cache hash
       id: get-cache-hash
       run: echo hash=$(echo $PHP_EXTENSIONS | md5sum | awk '{ print $1}') >> $GITHUB_OUTPUT
       shell: bash
 
-  - name: Setup cache environment
+    - name: Setup cache environment
       id: extcache
       uses: shivammathur/cache-extensions@v1
       with:

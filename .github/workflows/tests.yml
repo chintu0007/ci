@@ -16,24 +16,19 @@ jobs:
     runs-on: ubuntu-22.04
 
     services:
-
-      redis: 
+      redis:
         image: redis:8.0-M03
-        
         ports:
-          - 6379:6379         
+          - 6379:6379
 
-      mysql: 
+      mysql:
         image: mysql:8.0
-        
         ports:
           - 3306:3306
-
         env:
-          MYSQL_DATABASE: laravel 
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes  
-          
-    
+          MYSQL_DATABASE: laravel
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4.1.7
@@ -41,8 +36,8 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
         with:
-            php-version: '8.3'
-            php-extensions: 'json, dom, curl, libxml, mbstring'
+          php-version: '8.3'
+          php-extensions: 'json, dom, curl, libxml, mbstring'
 
       - name: Install Dependencies
         run: composer install -q --no-interaction --no-progress
@@ -51,9 +46,9 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
-     
+
       - name: Run Laravel Pint
         run: vendor/bin/pint --test
-   
-      - name: Run Tests          
+
+      - name: Run Tests
         run: php artisan test --compact
